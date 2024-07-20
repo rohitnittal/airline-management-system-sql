@@ -1,0 +1,29 @@
+CREATE TABLE flights (
+  flight_id INT PRIMARY KEY,
+  departure_airport VARCHAR(255),
+  arrival_airport VARCHAR(255),
+  departure_time TIME
+);
+
+CREATE TABLE passengers (
+  passenger_id INT PRIMARY KEY,
+  name VARCHAR(255),
+  address VARCHAR(255)
+);
+
+CREATE TABLE bookings (
+  booking_id INT PRIMARY KEY,
+  flight_id INT,
+  passenger_id INT,
+  booking_date DATE,
+  FOREIGN KEY (flight_id) REFERENCES flights(flight_id),
+  FOREIGN KEY (passenger_id) REFERENCES passengers(passenger_id)
+);
+
+CREATE TABLE crew_members (
+  crew_member_id INT PRIMARY KEY,
+  name VARCHAR(255),
+  role VARCHAR(255),
+  flight_id INT,
+  FOREIGN KEY (flight_id) REFERENCES flights(flight_id)
+);
